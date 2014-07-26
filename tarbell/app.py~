@@ -356,7 +356,7 @@ class TarbellSite:
 	    try:
             	context = self.get_context(publish)
 	    except errors.HttpError:
-		path = 'error.html'
+		path = 'errors.html'
 		context = {}
 		puts("Made it here")
 
