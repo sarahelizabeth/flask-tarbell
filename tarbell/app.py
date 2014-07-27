@@ -315,6 +315,8 @@ class TarbellSite:
         template_dirs = [path]
         if os.path.isdir(base_dir):
             template_dirs.append(base_dir)
+            # append location relative to app.py
+            template_dirs.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'errors'))
 
         self.app.jinja_loader = TarbellFileSystemLoader(template_dirs)
 
