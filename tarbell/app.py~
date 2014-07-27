@@ -315,6 +315,8 @@ class TarbellSite:
         template_dirs = [path]
         if os.path.isdir(base_dir):
             template_dirs.append(base_dir)
+            # append location relative to app.py
+            template_dirs.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'errors'))
 
         self.app.jinja_loader = TarbellFileSystemLoader(template_dirs)
 
@@ -356,14 +358,14 @@ class TarbellSite:
 	    try:
             	context = self.get_context(publish)
 	    except errors.HttpError:
-		path = 'errors.html'
+		path = 'error.html'
 		context = {}
 		puts("Made it here")
 
             # Mix in defaults
             context.update({
                 "PROJECT_PATH": self.path,
-                "PREVIEW_SERVER": not publish,
+                "PREVIEW_SERVER": True,
                 "ROOT_URL": "127.0.0.1:5000",
                 "PATH": path,
                 "SPREADSHEET_KEY": self.key,

@@ -385,8 +385,15 @@ def tarbell_newproject(command, args):
 
 	# Create error file
 	puts(colored.green("\nCopying error files..."))
-	error_path= pkg_resources.resource_filename("tarbell", "templates/error.html")
-        shutil.copy2(error_path, path)
+	error_dir = os.path.dirname(pkg_resources.resource_filename("tarbell", "templates/error.html"))
+        files = glob.iglob(error_dir)
+	puts(error_dir + "\n")
+        for file in files:
+            if os.path.isfile(file):
+                dir, filename = os.path.split(file)
+                if filename.startswith("error"):
+                    puts("Copying {0} to {1}".format(filename, path))
+                    shutil.copy2(file, path)
 	
         # Copy html files
         puts(colored.green("\nCopying html files..."))

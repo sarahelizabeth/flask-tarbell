@@ -1,0 +1,26 @@
+{% extends "_blueprint/_base.html" %}
+
+{% block content %}
+
+<style>
+nav {
+  display: none;
+}
+</style>
+
+<div class="container">
+  <br><br>
+  <h1>Oh no!</h1>
+  <p>It seems you have encountered a 500: Internal Server Error!</p>
+  <br>
+  <h3>Don't fret:</h3>
+  <p>Just go into your command line and type <code>tarbell config</code>.</p>
+  <p>This will allow you to reconfigure your Google Spreadhseet so that your project can find it!</p>
+  <br>
+  <br>
+  <h4>For the pros:</h4>
+  <p>You can go into your <code>tarbell_config.py</code> file and make sure the <code>SPREADSHEET_KEY</code> matches the key in the URL of your project's Google Spreadsheet.</p>
+  <p>It's the long string of letters and numbers after <code>?key=</code> and before the <code>&usp</code>.</p>
+</div>
+
+{% endblock content %}
